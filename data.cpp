@@ -1191,7 +1191,7 @@ void DataManager::SetDefaultValues()
   mPersist.SetValue(TW_TIME_ZONE_VAR, OF_DEFAULT_TIMEZONE);
   mPersist.SetValue(TW_TIME_ZONE_GUISEL, OF_DEFAULT_TIMEZONE);
   mPersist.SetValue(TW_TIME_ZONE_GUIOFFSET, "0");
-  mPersist.SetValue(TW_TIME_ZONE_GUIDST, "1");
+  mPersist.SetValue(TW_TIME_ZONE_GUIDST, "0");
   mPersist.SetValue(TW_AUTO_REFLASHTWRP_VAR, "0");
 
   // avb2.0 disable
