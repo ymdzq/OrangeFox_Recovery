@@ -2,7 +2,7 @@
 	Copyright 2012 bigbiff/Dees_Troy TeamWin
 	This file is part of TWRP/TeamWin Recovery Project.
 
-	Copyright (C) 2018-2022 OrangeFox Recovery Project
+	Copyright (C) 2018-2023 OrangeFox Recovery Project
 	This file is part of the OrangeFox Recovery Project.
 
 	TWRP is free software: you can redistribute it and/or modify
@@ -2247,7 +2247,6 @@ void TWFunc::Welcome_Message(void)
     gui_print_color("green", "OrangeFox websites:\n");
     gui_print("[Downloads] : https://orangefox.download/\n");
     gui_print("[Guides/FAQ]: https://wiki.orangefox.tech/guides/\n");
-    gui_print("[App]       : https://app.orangefox.tech/\n");
 
     #if defined(OF_DISABLE_MIUI_SPECIFIC_FEATURES) || defined(OF_TWRP_COMPATIBILITY_MODE)
     LOGINFO(" [MIUI-specific features not enabled]\n");
