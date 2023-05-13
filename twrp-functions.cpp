@@ -1196,20 +1196,21 @@ unsigned int TWFunc::Get_D_Type_From_Stat(string Path)
   return DT_UNKNOWN;
 }
 
-int TWFunc::read_file(string fn, string & results)
-{
-  ifstream file;
-  file.open(fn.c_str(), ios::in);
+int TWFunc::read_file(string fn, string& results) {
+	ifstream file;
+	file.open(fn.c_str(), ios::in);
 
-  if (file.is_open())
-    {
-      file >> results;
-      file.close();
-      return 0;
-    }
+	if (file.is_open()) {
+		std::string line;
+		while (std::getline(file, line)) {
+			results += line;
+		}
+		file.close();
+		return 0;
+	}
 
-  LOGINFO("Cannot find file %s\n", fn.c_str());
-  return -1;
+	LOGINFO("Cannot find file %s\n", fn.c_str());
+	return -1;
 }
 
 int TWFunc::read_file(string fn, vector < string > &results)
