@@ -2,7 +2,7 @@
 	Copyright 2012-2020 TeamWin
 	This file is part of TWRP/TeamWin Recovery Project.
 
-	Copyright (C) 2018-2022 OrangeFox Recovery Project
+	Copyright (C) 2018-2023 OrangeFox Recovery Project
 	This file is part of the OrangeFox Recovery Project.
 
 	TWRP is free software: you can redistribute it and/or modify
@@ -241,7 +241,7 @@ static void process_recovery_mode(twrpAdbBuFifo* adb_bu_fifo, bool skip_decrypti
 	LOGINFO("Backup of OrangeFox ramdisk done.\n");
 #endif
 
-#ifdef FOX_ADVANCED_SECURITY
+#ifdef OF_ADVANCED_SECURITY
   	property_set("ctl.stop", "adbd");
   	property_set("orangefox.adb.status", "0");
 #endif
@@ -272,7 +272,7 @@ static void process_recovery_mode(twrpAdbBuFifo* adb_bu_fifo, bool skip_decrypti
   	// call OrangeFox startup code
   	TWFunc::OrangeFox_Startup();
   	
-#ifdef FOX_ADVANCED_SECURITY
+#ifdef OF_ADVANCED_SECURITY
 	LOGINFO("ADB & MTP disabled by maintainer\n");
 	DataManager::SetValue("fox_advanced_security", "1");
   	DataManager::SetValue("tw_mtp_enabled", 0);

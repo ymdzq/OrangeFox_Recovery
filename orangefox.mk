@@ -1,6 +1,6 @@
 #
 #	This file is part of the OrangeFox Recovery Project
-# 	Copyright (C) 2018-2022 The OrangeFox Recovery Project
+# 	Copyright (C) 2018-2023 The OrangeFox Recovery Project
 #	
 #	OrangeFox is free software: you can redistribute it and/or modify
 #	it under the terms of the GNU General Public License as published by
@@ -146,8 +146,8 @@ else
     LOCAL_CFLAGS += -DOF_SPLASH_MAX_SIZE='"4096"'
 endif
 
-ifneq ($(FOX_ADVANCED_SECURITY),)
-    LOCAL_CFLAGS += -DFOX_ADVANCED_SECURITY='"$(FOX_ADVANCED_SECURITY)"'
+ifneq ($(OF_ADVANCED_SECURITY),)
+    LOCAL_CFLAGS += -DOF_ADVANCED_SECURITY='"$(OF_ADVANCED_SECURITY)"'
 endif
 
 ifneq ($(FOX_CURRENT_DEV_STR),)
@@ -297,8 +297,8 @@ ifeq ($(OF_CHECK_OVERWRITE_ATTEMPTS),1)
     LOCAL_CFLAGS += -DOF_CHECK_OVERWRITE_ATTEMPTS='"1"'
 endif
 
-ifeq ($(FOX_ENABLE_LAB),1)
-    LOCAL_CFLAGS += -DFOX_ENABLE_LAB='"1"'
+ifeq ($(OF_ENABLE_LAB),1)
+    LOCAL_CFLAGS += -DOF_ENABLE_LAB='"1"'
 endif
 
 ifeq ($(FOX_USE_NANO_EDITOR), 1)
@@ -346,6 +346,10 @@ ifeq ($(OF_USE_LOCKSCREEN_BUTTON),1)
 endif
 
 ifeq ($(FOX_USE_LZMA_COMPRESSION),1)
+    OF_USE_LZMA_COMPRESSION := 1
+endif
+
+ifeq ($(OF_USE_LZMA_COMPRESSION),1)
     ifeq ($(BOARD_RAMDISK_USE_LZMA),)
     	BOARD_RAMDISK_USE_LZMA := true
     endif
@@ -367,11 +371,9 @@ ifeq ($(OF_OTA_RES_CHECK_MICROSD),1)
     LOCAL_CFLAGS += -DOF_OTA_RES_CHECK_MICROSD='"1"'
 endif
 
-# from gui/Android.mk
-ifeq ($(FOX_ENABLE_LAB),1)
-    LOCAL_CFLAGS += -DFOX_ENABLE_LAB='"1"'
+ifeq ($(OF_ENABLE_LAB),1)
+    LOCAL_CFLAGS += -DOF_ENABLE_LAB='"1"'
 endif
-#
 
 # samsung dynamic issues
 ifeq ($(FOX_DYNAMIC_SAMSUNG_FIX),1)

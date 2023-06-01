@@ -2,7 +2,7 @@
 	Copyright 2012 to 2021 TeamWin
 	This file is part of TWRP/TeamWin Recovery Project.
 
-	Copyright (C) 2018-2022 OrangeFox Recovery Project
+	Copyright (C) 2018-2023 OrangeFox Recovery Project
 	This file is part of the OrangeFox Recovery Project.
 
 	TWRP is free software: you can redistribute it and/or modify
@@ -777,7 +777,7 @@ void DataManager::SetDefaultValues()
 
   mConst.SetValue(OF_SPLASH_MAX_SIZE_STR, OF_SPLASH_MAX_SIZE);
 
-  #ifdef FOX_ENABLE_LAB
+  #ifdef OF_ENABLE_LAB
     mConst.SetValue("fox_lab", "1");
 		LOGERR("Warning: lab enabled\n");
 		LOGERR("Build isn't for release\n");

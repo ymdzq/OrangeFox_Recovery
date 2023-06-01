@@ -2240,7 +2240,7 @@ void TWFunc::Welcome_Message(void)
     	else
     	    gui_print_color("warning", "[Support]   : No official support for unknown builds\n");
     }
-#ifdef FOX_ENABLE_LAB
+#ifdef OF_ENABLE_LAB
     gui_print_color("error", "\n*** CONFIDENTIAL ALPHA. NOT FOR RELEASE!! ***\n\n");
 #endif
 
