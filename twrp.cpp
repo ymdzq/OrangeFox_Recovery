@@ -96,9 +96,6 @@ static void Decrypt_Page(bool SkipDecryption, bool datamedia) {
 			} else {
 				// OrangeFox - make note of this decryption
 				DataManager::SetValue("OTA_decrypted", "1");
-				#ifdef FOX_OLD_DECRYPT_RELOAD
-				DataManager::SetValue("used_custom_encryption", "1");
-				#endif
 				usleep(16);
 			}
 		}
