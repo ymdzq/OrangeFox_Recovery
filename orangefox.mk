@@ -528,6 +528,13 @@ ifeq ($(OF_PRINT_BIND_INTERNAL_MESSAGE),1)
 endif
 #
 
+# support custom default time zones
+ifneq ($(OF_DEFAULT_TIMEZONE),)
+    LOCAL_CFLAGS += -DOF_DEFAULT_TIMEZONE='"$(OF_DEFAULT_TIMEZONE)"'
+else
+    LOCAL_CFLAGS += -DOF_DEFAULT_TIMEZONE='"CET-1;CEST,M3.5.0,M10.5.0"'
+endif
+
 # renamed and deprecated build vars: cover both "FOX_ "and "OF_", but issue warnings about deprecation
 ifeq ($(OF_VIRTUAL_AB_DEVICE),1)
    FOX_VIRTUAL_AB_DEVICE := 1

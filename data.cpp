@@ -1133,7 +1133,6 @@ void DataManager::SetDefaultValues()
   mPersist.SetValue(TW_DISABLE_FREE_SPACE_VAR, "0");
   mPersist.SetValue(TW_FORCE_DIGEST_CHECK_VAR, "0");
   mPersist.SetValue(TW_USE_COMPRESSION_VAR, "0");
-  mPersist.SetValue(TW_TIME_ZONE_VAR, "CET-1");
   mPersist.SetValue(TW_GUI_SORT_ORDER, "1");
   mPersist.SetValue(TW_RM_RF_VAR, "0");
   mPersist.SetValue(TW_SKIP_DIGEST_CHECK_VAR, "0");
@@ -1141,7 +1140,8 @@ void DataManager::SetDefaultValues()
   mPersist.SetValue(TW_SDEXT_SIZE, "0");
   mPersist.SetValue(TW_SWAP_SIZE, "0");
   mPersist.SetValue(TW_SDPART_FILE_SYSTEM, "ext3");
-  mPersist.SetValue(TW_TIME_ZONE_GUISEL, "CET-1");
+  mPersist.SetValue(TW_TIME_ZONE_VAR, OF_DEFAULT_TIMEZONE);
+  mPersist.SetValue(TW_TIME_ZONE_GUISEL, OF_DEFAULT_TIMEZONE);
   mPersist.SetValue(TW_TIME_ZONE_GUIOFFSET, "0");
   mPersist.SetValue(TW_TIME_ZONE_GUIDST, "1");
 
