@@ -2,7 +2,7 @@
 	Copyright 2003 to 2017 TeamWin
 	This file is part of TWRP/TeamWin Recovery Project.
 
-	Copyright (C) 2018-2021 OrangeFox Recovery Project
+	Copyright (C) 2018-2023 OrangeFox Recovery Project
 	This file is part of the OrangeFox Recovery Project.
 
 	TWRP is free software: you can redistribute it and/or modify
@@ -817,7 +817,7 @@ int OpenRecoveryScript::remountrw(void)
 
 void OpenRecoveryScript::Run_Fox_Process_After_ORS(int result)
 {
-#ifdef OF_VANILLA_BUILD
+#ifdef FOX_VANILLA_BUILD
    LOGINFO("- OrangeFox: DEBUG: skipping the Run_Fox_Process_After_ORS process...\n");
 #else
    if (TWFunc::JustInstalledMiui())

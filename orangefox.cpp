@@ -1,5 +1,5 @@
 /*
-	Copyright (C) 2020-2021 OrangeFox Recovery Project
+	Copyright (C) 2020-2023 OrangeFox Recovery Project
 	This file is part of the OrangeFox Recovery Project.
 	
 	OrangeFox is free software: you can redistribute it and/or modify
@@ -79,7 +79,7 @@ bool ors_is_active()
 string Fox_CheckForAsserts(void)
 {
 string ret = "";
-#ifdef OF_TARGET_DEVICES
+#ifdef FOX_TARGET_DEVICES
 string device;
   device = TWFunc::get_assert_device(FOX_TMP_PATH);
   if (device.empty())
@@ -95,7 +95,7 @@ string device;
        return ret;
 
   LOGINFO("AssertDevice=[%s] and CurrentDevice=[%s]\n", device.c_str(), tmpstr.c_str());
-  std::vector <std::string> devs = TWFunc::Split_String(OF_TARGET_DEVICES, ",");
+  std::vector <std::string> devs = TWFunc::Split_String(FOX_TARGET_DEVICES, ",");
   
   string temp = "";   
   for (size_t i = 0; i < devs.size(); ++i)
@@ -107,7 +107,7 @@ string device;
    	   {
    	      if (device == temp)
    	      	{
-		  LOGINFO("Found AssertDevice [%s] at OF_TARGET_DEVICES # %i\n", temp.c_str(), (int)i);
+		  LOGINFO("Found AssertDevice [%s] at FOX_TARGET_DEVICES # %i\n", temp.c_str(), (int)i);
    	      	  return temp;
    	    	}
    	  }
@@ -129,7 +129,7 @@ bool Fox_Support_All_OTA()
 
 void Fox_ProcessAsserts(string assert_device)
 {
-  #ifdef OF_TARGET_DEVICES
+  #ifdef FOX_TARGET_DEVICES
     if (!assert_device.empty())
        {
          if (TWFunc::Fox_Property_Set("ro.product.device", assert_device))
@@ -237,7 +237,7 @@ bool verify_incremental_package(string fingerprint, string metadatafp, string me
 int TWinstall_Run_OTA_BAK (bool reportback) 
 {
 int result = 0;
-#ifdef OF_VANILLA_BUILD
+#ifdef FOX_VANILLA_BUILD
    LOGINFO("- OrangeFox: DEBUG: skipping the OTA_BAK process...\n");
    return result;
 #endif

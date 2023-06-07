@@ -2,7 +2,7 @@
 	Copyright 2014 to 2021 TeamWin
 	This file is part of TWRP/TeamWin Recovery Project.
 
-	Copyright (C) 2018-2022 OrangeFox Recovery Project
+	Copyright (C) 2018-2023 OrangeFox Recovery Project
 	This file is part of the OrangeFox Recovery Project.
 
 	TWRP is free software: you can redistribute it and/or modify
@@ -3687,7 +3687,7 @@ void TWPartitionManager::Coldboot() {
 
 int TWPartitionManager::Run_OTA_Survival_Backup(bool adbbackup)
 {
-#ifdef OF_VANILLA_BUILD
+#ifdef FOX_VANILLA_BUILD
    LOGINFO("- OrangeFox: DEBUG: skipping the OTA_BAK process...\n");
    return 0;
 #endif
@@ -4064,7 +4064,7 @@ bool TWPartitionManager::Flash_Repacked_Image(string & path,
 
 int TWPartitionManager::Run_OTA_Survival_Restore(const string & Restore_Name)
 {
-#ifdef OF_VANILLA_BUILD
+#ifdef FOX_VANILLA_BUILD
    LOGINFO("- OrangeFox: DEBUG: skipping the OTA_RES process...\n");
    return 0;
 #endif

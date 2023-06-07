@@ -740,7 +740,7 @@ void DataManager::SetDefaultValues()
   #endif
 
   // magiskboot 24+ whether to force-patch vbmebta
-  #if defined(OF_PATCH_VBMETA_FLAG)
+  #if defined(FOX_PATCH_VBMETA_FLAG)
   setenv("PATCHVBMETAFLAG", "true", 1);
   #else
   setenv("PATCHVBMETAFLAG", "false", 1);
@@ -810,7 +810,7 @@ void DataManager::SetDefaultValues()
     mConst.SetValue("fox_disable_reflash_current", "0");
   #endif
 
-  #if defined(OF_AB_DEVICE) || defined(AB_OTA_UPDATER)
+  #if defined(FOX_AB_DEVICE) || defined(AB_OTA_UPDATER)
     mData.SetValue("of_ab_device", "1");
   #else
     mData.SetValue("of_ab_device", "0");

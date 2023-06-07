@@ -49,20 +49,24 @@ ifeq ($(OF_FORCE_MAGISKBOOT_BOOT_PATCH_MIUI),1)
 endif
 
 # virtual AB
-ifeq ($(OF_VIRTUAL_AB_DEVICE),1)
-    LOCAL_CFLAGS += -DOF_VIRTUAL_AB_DEVICE='"1"'
-    OF_AB_DEVICE := 1
-    OF_VANILLA_BUILD := 1
+ifeq ($(PRODUCT_VIRTUAL_AB_OTA),true)
+    FOX_VIRTUAL_AB_DEVICE := 1
+endif
+
+ifeq ($(FOX_VIRTUAL_AB_DEVICE),1)
+    LOCAL_CFLAGS += -DFOX_VIRTUAL_AB_DEVICE='"1"'
+    FOX_AB_DEVICE := 1
+    FOX_VANILLA_BUILD := 1
 endif
 
 # enable vbmeta patch in magiskboot 24+
-ifeq ($(OF_PATCH_VBMETA_FLAG),1)
-    LOCAL_CFLAGS += -DOF_PATCH_VBMETA_FLAG='"1"'
-    $(warning Do not use "OF_PATCH_VBMETA_FLAG" unless you are sure that it is needed!)
+ifeq ($(FOX_PATCH_VBMETA_FLAG),1)
+    LOCAL_CFLAGS += -DFOX_PATCH_VBMETA_FLAG='"1"'
+    $(warning Do not use "FOX_PATCH_VBMETA_FLAG" unless you are sure that it is needed!)
 endif
 
-ifeq ($(OF_VANILLA_BUILD),1)
-    LOCAL_CFLAGS += -DOF_VANILLA_BUILD='"1"'
+ifeq ($(FOX_VANILLA_BUILD),1)
+    LOCAL_CFLAGS += -DFOX_VANILLA_BUILD='"1"'
     OF_SKIP_ORANGEFOX_PROCESS := 1
     OF_DISABLE_MIUI_SPECIFIC_FEATURES := 1
     OF_DONT_PATCH_ENCRYPTED_DEVICE := 1
@@ -70,6 +74,9 @@ ifeq ($(OF_VANILLA_BUILD),1)
     OF_KEEP_DM_VERITY_FORCED_ENCRYPTION := 1
     OF_TWRP_COMPATIBILITY_MODE := 1
     OF_NO_MIUI_PATCH_WARNING := 1
+    ifeq ($(OF_SUPPORT_ALL_BLOCK_OTA_UPDATES),1)
+      $(error OF_SUPPORT_ALL_BLOCK_OTA_UPDATES is not compatible with VANILLA builds)
+    endif
 endif
 
 ifeq ($(OF_DISABLE_MIUI_SPECIFIC_FEATURES),1)
@@ -84,6 +91,9 @@ endif
 ifeq ($(OF_TWRP_COMPATIBILITY_MODE),1)
     LOCAL_CFLAGS += -DOF_TWRP_COMPATIBILITY_MODE='"1"'
     OF_DISABLE_MIUI_SPECIFIC_FEATURES := 1
+    ifeq ($(OF_SUPPORT_ALL_BLOCK_OTA_UPDATES),1)
+      $(error OF_SUPPORT_ALL_BLOCK_OTA_UPDATES is not compatible with this setting)
+    endif
 endif
 
 ifeq ($(OF_SKIP_ORANGEFOX_PROCESS),1)
@@ -106,17 +116,17 @@ ifeq ($(OF_NO_MIUI_PATCH_WARNING),1)
 endif
 
 ifeq ($(AB_OTA_UPDATER),true)
-    OF_AB_DEVICE := 1
+    FOX_AB_DEVICE := 1
 endif
 
 ifeq ($(OF_AB_DEVICE_WITH_RECOVERY_PARTITION),1)
-    OF_AB_DEVICE := 1
+    FOX_AB_DEVICE := 1
     OF_NO_SPLASH_CHANGE := 1
     LOCAL_CFLAGS += -DOF_AB_DEVICE_WITH_RECOVERY_PARTITION='"1"'
 endif
 
-ifeq ($(OF_AB_DEVICE),1)
-    LOCAL_CFLAGS += -DOF_AB_DEVICE='"1"'
+ifeq ($(FOX_AB_DEVICE),1)
+    LOCAL_CFLAGS += -DFOX_AB_DEVICE='"1"'
     ifneq ($(AB_OTA_UPDATER),true)
     	LOCAL_CFLAGS += -DAB_OTA_UPDATER=1
     	LOCAL_SHARED_LIBRARIES += libhardware android.hardware.boot@1.0
@@ -242,15 +252,15 @@ ifeq ($(OF_KEEP_DM_VERITY_FORCED_ENCRYPTION),1)
 endif
 
 ifneq ($(TARGET_OTA_ASSERT_DEVICE),)
-ifeq ($(OF_TARGET_DEVICES),)
-    LOCAL_CFLAGS += -DOF_TARGET_DEVICES='"$(TARGET_OTA_ASSERT_DEVICE)"'
+ifeq ($(FOX_TARGET_DEVICES),)
+    LOCAL_CFLAGS += -DFOX_TARGET_DEVICES='"$(TARGET_OTA_ASSERT_DEVICE)"'
 else
-    $(error You cannot use both "TARGET_OTA_ASSERT_DEVICE" and "OF_TARGET_DEVICES" at the same time. Quitting)
+    $(error You cannot use both "TARGET_OTA_ASSERT_DEVICE" and "FOX_TARGET_DEVICES" at the same time. Quitting)
 endif
 endif
 
-ifneq ($(OF_TARGET_DEVICES),)
-    LOCAL_CFLAGS += -DOF_TARGET_DEVICES='"$(OF_TARGET_DEVICES)"'
+ifneq ($(FOX_TARGET_DEVICES),)
+    LOCAL_CFLAGS += -DFOX_TARGET_DEVICES='"$(FOX_TARGET_DEVICES)"'
 endif
 
 ifeq ($(OF_KEEP_DM_VERITY),1)
@@ -339,10 +349,6 @@ endif
 
 ifeq ($(OF_USE_LOCKSCREEN_BUTTON),1)
     LOCAL_CFLAGS += -DOF_USE_LOCKSCREEN_BUTTON
-endif
-
-ifeq ($(FOX_USE_LZMA_COMPRESSION),1)
-    OF_USE_LZMA_COMPRESSION := 1
 endif
 
 ifeq ($(OF_USE_LZMA_COMPRESSION),1)
@@ -480,7 +486,7 @@ endif
 
 ifeq ($(OF_NEW_BOOT_HEADER),1)
     LOCAL_CFLAGS += -DOF_NEW_BOOT_HEADER='"1"'
-#    OF_PATCH_VBMETA_FLAG := 1
+#    FOX_PATCH_VBMETA_FLAG := 1
 endif
 
 # lptools; disable by default; enable with OF_ENABLE_LPTOOLS=1
@@ -520,4 +526,43 @@ endif
 ifeq ($(OF_PRINT_BIND_INTERNAL_MESSAGE),1)
     LOCAL_CFLAGS += -DOF_PRINT_BIND_INTERNAL_MESSAGE='"1"'
 endif
+#
+
+# renamed and deprecated build vars: cover both "FOX_ "and "OF_", but issue warnings about deprecation
+ifeq ($(OF_VIRTUAL_AB_DEVICE),1)
+   FOX_VIRTUAL_AB_DEVICE := 1
+   $(warning OF_VIRTUAL_AB_DEVICE has been deprecated. Use "export FOX_VIRTUAL_AB_DEVICE=1" instead)
+endif
+
+ifeq ($(OF_AB_DEVICE),1)
+   FOX_AB_DEVICE := 1
+   $(warning OF_OF_AB_DEVICE has been deprecated. Use "export FOX_OF_AB_DEVICE=1" instead)
+endif
+
+ifeq ($(OF_PATCH_VBMETA_FLAG),1)
+   FOX_PATCH_VBMETA_FLAG := 1
+   $(warning OF_PATCH_VBMETA_FLAG has been deprecated. Use "export FOX_PATCH_VBMETA_FLAG=1" instead)
+endif
+
+ifeq ($(OF_VANILLA_BUILD),1)
+   FOX_VANILLA_BUILD := 1
+   $(warning OF_VANILLA_BUILD has been deprecated. Use "export FOX_VANILLA_BUILD=1" instead)
+endif
+
+ifneq ($(OF_TARGET_DEVICES),)
+   $(warning OF_TARGET_DEVICES has been deprecated. Use "FOX_TARGET_DEVICES" instead)
+   ifeq ($(FOX_TARGET_DEVICES),)
+       FOX_TARGET_DEVICES := $(OF_TARGET_DEVICES)
+   endif
+endif
+
+# renamed build vars - throw up errors for these:
+ifeq ($(FOX_USE_LZMA_COMPRESSION),1)
+   $(error FOX_USE_LZMA_COMPRESSION is obsolete. Use "export OF_USE_LZMA_COMPRESSION=1" instead)
+endif
+
+ifeq ($(FOX_ADVANCED_SECURITY),1)
+   $(error FOX_ADVANCED_SECURITY is obsolete. Use "export OF_ADVANCED_SECURITY=1" instead)
+endif
+
 #

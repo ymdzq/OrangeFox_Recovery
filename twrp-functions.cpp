@@ -100,7 +100,7 @@ string Fox_Current_ROM = "";
 /* is this an A/B device? */
 static bool Is_AB_Device() 
 {
-  #if defined(AB_OTA_UPDATER) || defined(OF_AB_DEVICE)
+  #if defined(AB_OTA_UPDATER) || defined(FOX_AB_DEVICE)
      return true;
   #endif
   string s = TWFunc::Fox_Property_Get("ro.boot.slot_suffix");
@@ -1881,7 +1881,7 @@ void TWFunc::Disable_Stock_Recovery_Replace_Func(void)
 // Disable flashing of stock recovery
 void TWFunc::Disable_Stock_Recovery_Replace(void)
 {
-  #ifdef OF_VANILLA_BUILD
+  #ifdef FOX_VANILLA_BUILD
   return;
   #endif
   if (PartitionManager.Mount_By_Path(PartitionManager.Get_Android_Root_Path(), false))
@@ -2746,7 +2746,7 @@ bool TWFunc::PackRepackImage_MagiskBoot(bool do_unpack, bool is_boot)
  */
   TWPartition *Boot = PartitionManager.Find_Partition_By_Path("/boot");
 
-#if defined(AB_OTA_UPDATER) || defined(OF_AB_DEVICE)
+#if defined(AB_OTA_UPDATER) || defined(FOX_AB_DEVICE)
   if (Boot != NULL)
     {
        tmpstr = Boot->Actual_Block_Device;
@@ -2880,7 +2880,7 @@ bool TWFunc::PackRepackImage_MagiskBoot(bool do_unpack, bool is_boot)
 	           AppendLineToFile (cmd_script2, magiskboot_sbin + " hexpatch new-boot.img 0000000300000000617662746f6f6c 0000000000000000617662746f6f6c > /dev/null 2>&1");
 		*/
 	        AppendLineToFile (cmd_script2, "LOGINFO \"- Flashing repacked image ...\"");
-	        #if defined(AB_OTA_UPDATER) || defined(OF_AB_DEVICE)
+	        #if defined(AB_OTA_UPDATER) || defined(FOX_AB_DEVICE)
 	        AppendLineToFile (cmd_script2, "dd if=new-boot.img of=" + tmpstr + " > /dev/null 2>&1");
 	        #else
 	        AppendLineToFile (cmd_script2, "flash_image \"" +  tmpstr + "\" new-boot.img");
@@ -4024,7 +4024,7 @@ void TWFunc::PrepareToFinish(void)
     }
 
   // restore the stock recovery ?
-  #ifndef OF_VANILLA_BUILD
+  #ifndef FOX_VANILLA_BUILD
   if (
      (DataManager::GetIntValue(FOX_DONT_REPLACE_STOCK) == 1)
   && (PartitionManager.Mount_By_Path(PartitionManager.Get_Android_Root_Path(), false))
@@ -4328,7 +4328,7 @@ void TWFunc::Deactivation_Process(void)
 
 void TWFunc::Patch_AVB20(bool silent)
 {
-#if defined(OF_PATCH_AVB20) && !defined(OF_SKIP_ORANGEFOX_PROCESS) && !defined(OF_VANILLA_BUILD) && !defined(OF_AB_DEVICE) && !defined(AB_OTA_UPDATER)
+#if defined(OF_PATCH_AVB20) && !defined(OF_SKIP_ORANGEFOX_PROCESS) && !defined(FOX_VANILLA_BUILD) && !defined(FOX_AB_DEVICE) && !defined(AB_OTA_UPDATER)
 std::string zipname = FFiles_dir + "/OF_avb20/OF_avb20.zip";
 int res=0, wipe_cache=0;
 std::string magiskboot = TWFunc::Get_MagiskBoot();
@@ -4370,7 +4370,7 @@ std::string keepdmverity, keepforcedencryption;
 std::string zipname = FFiles_dir + "/OF_verity_crypt/OF_verity_crypt.zip";
 int res=0, wipe_cache=0;
 
-  #if defined(AB_OTA_UPDATER) || defined(OF_AB_DEVICE)
+  #if defined(AB_OTA_UPDATER) || defined(FOX_AB_DEVICE)
   gui_print_color("warning", "A/B device - skipping the disable forced-encryption patches.\n");
   return 0;
   #endif
@@ -4514,7 +4514,7 @@ void TWFunc::Setup_Verity_Forced_Encryption(void)
   DataManager::SetValue(FOX_DISABLE_DM_VERITY, "1");
 #endif
 
-#ifdef OF_VANILLA_BUILD
+#ifdef FOX_VANILLA_BUILD
   DataManager::SetValue(FOX_DISABLE_DM_VERITY, "0");
   DataManager::SetValue(FOX_DISABLE_FORCED_ENCRYPTION, "0");
   DataManager::SetValue(FOX_ADVANCED_STOCK_REPLACE, "0");
@@ -4633,7 +4633,7 @@ void TWFunc::CreateNewFile(string file_path)
 
 bool TWFunc::To_Skip_OrangeFox_Process(void)
 {
-  #if defined(OF_SKIP_ORANGEFOX_PROCESS) || defined(OF_VANILLA_BUILD)
+  #if defined(OF_SKIP_ORANGEFOX_PROCESS) || defined(FOX_VANILLA_BUILD)
      return true;
   #else
      return false;
@@ -4871,7 +4871,7 @@ bool TWFunc::Has_Dynamic_Partitions(void) {
 bool TWFunc::Has_Virtual_AB_Partitions(void) {
 	if (Fox_Property_Get("ro.virtual_ab.enabled") == "true")
 	   return true;
-	#ifdef OF_VIRTUAL_AB_DEVICE
+	#ifdef FOX_VIRTUAL_AB_DEVICE
 	   return true;
 	#else
 	   return false;
@@ -5013,7 +5013,7 @@ std::string res = path;
 */
 bool TWFunc::Magiskboot_Repack_Patch_VBMeta()
 {
-   #if defined(OF_PATCH_VBMETA_FLAG)
+   #if defined(FOX_PATCH_VBMETA_FLAG)
    return true;
    #else
    return false;
