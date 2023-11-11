@@ -1150,6 +1150,24 @@ void DataManager::SetDefaultValues()
   mPersist.SetValue(TW_AUTO_REFLASHTWRP_VAR, "0");
 
 
+  // avb2.0 disable
+  // by patching boot image
+  #ifdef OF_PATCH_AVB20
+  	mConst.SetValue(OF_PATCH_AVB20_VAR, "1");
+  #else
+  	mConst.SetValue(OF_PATCH_AVB20_VAR, "0");
+  #endif
+
+  // by patching vbmeta
+  #ifdef OF_SUPPORT_VBMETA_AVB2_PATCHING
+  	mConst.SetValue(OF_AUTO_DISABLE_VBMETA_AVB2_VAR, "1");
+  #else
+  	mConst.SetValue(OF_AUTO_DISABLE_VBMETA_AVB2_VAR, "0");
+  #endif
+
+  mPersist.SetValue(TW_AUTO_DISABLE_AVB2_VAR, "0");
+  // avb2.0
+
   mData.SetValue(TW_ACTION_BUSY, "0");
   mData.SetValue("tw_wipe_cache", "0");
   mData.SetValue("tw_wipe_dalvik", "0");

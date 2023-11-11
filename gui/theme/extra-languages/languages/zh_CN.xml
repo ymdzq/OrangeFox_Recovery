@@ -1037,6 +1037,14 @@
 		<!-- Wipe format moved -->
 		<string name="wipe_format_moved_info1">注意：格式化 Data 分区移动到</string>
 		<string name="wipe_format_moved_info2">分区管理界面</string>
-		
+
+		<!-- AVB 2.0 -->
+		<string name="auto_disable_avb2">刷入 ROM 后自动禁用 vbmeta AVB2.0</string>
+		<string name="disable_avb2">禁用 vbmeta AVB2.0</string>
+		<string name="disable_avb2_confirm">是否禁用 vbmeta AVB2.0？</string>
+		<string name="disabling_AVB2">正在禁用 vbmeta AVB2.0...</string>
+		<string name="disabling_AVB2_complete">禁用 vbmeta AVB2.0 完成！</string>
+		<string name="disable_avb2_success_msg">禁用vbmeta AVB2.0：处理 '{1}' 成功。</string>
+		<string name="disable_avb2_fail_msg">禁用vbmeta AVB2.0：处理 '{1}' 失败！</string>
 	</resources>
 </language>

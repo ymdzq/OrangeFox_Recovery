@@ -572,4 +572,8 @@ ifeq ($(FOX_ADVANCED_SECURITY),1)
    $(error FOX_ADVANCED_SECURITY is obsolete. Use "export OF_ADVANCED_SECURITY=1" instead)
 endif
 
+# support disabling avb2.0 by patching vbmeta/vbmeta_system
+ifeq ($(OF_SUPPORT_VBMETA_AVB2_PATCHING),1)
+    LOCAL_CFLAGS += -DOF_SUPPORT_VBMETA_AVB2_PATCHING='"1"'
+endif
 #
