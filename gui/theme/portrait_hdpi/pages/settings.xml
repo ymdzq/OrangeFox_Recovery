@@ -253,6 +253,11 @@
 				<listitem name="{@files_show_hidden}">
 					<data variable="tw_hidden_files"/>
 				</listitem>
+				<listitem name="{@auto_disable_avb2=Disable vbmeta AVB2.0}">
+					<condition var1="fox_auto_disable_vbmeta_avb2" var2="1"/>
+					<!--condition var1="fox_patch_avb_20" op="!=" var2="1"/-->
+					<data variable="tw_auto_disable_avb2"/>
+				</listitem>
 				<listitem name="{@unmount_sys_install}">
 					<data variable="tw_unmount_system"/>
 				</listitem>

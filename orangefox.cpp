@@ -944,10 +944,17 @@ void Fox_Post_Zip_Install(const int result)
          usleep(16384);
          TWFunc::Deactivation_Process();
          DataManager::SetValue(FOX_CALL_DEACTIVATION, 0);
-         
+
+	 // disable avb2.0 by patching the boot image
          usleep(16384);
          TWFunc::Patch_AVB20(false);
          usleep(16384);
+
+	 // disable avb2.0 by patching vbmeta/vbmeta_system (new devices)
+	 #if defined(OF_SUPPORT_VBMETA_AVB2_PATCHING)
+	 if (DataManager::GetIntValue(TW_AUTO_DISABLE_AVB2_VAR))
+		PartitionManager.Disable_AVB2(true);
+	 #endif
 
     	 // Run any custom script after ROM flashing
     	 TWFunc::MIUI_ROM_SetProperty(Fox_Zip_Installer_Code);

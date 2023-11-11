@@ -53,6 +53,11 @@
 				<listitem name="{@zip_sig_chk}">
 					<data variable="tw_signed_zip_verify"/>
 				</listitem>
+				<listitem name="{@auto_disable_avb2=Disable vbmeta AVB2.0}">
+					<condition var1="fox_auto_disable_vbmeta_avb2" var2="1"/>
+					<!--condition var1="fox_patch_avb_20" op="!=" var2="1"/-->
+					<data variable="tw_auto_disable_avb2"/>
+				</listitem>
 				<listitem name="{@unmount_sys_install}">
 					<data variable="tw_unmount_system"/>
 				</listitem>
@@ -219,6 +224,11 @@
 				</listitem>
 				<listitem name="{@zip_sig_chk}">
 					<data variable="tw_signed_zip_verify"/>
+				</listitem>
+				<listitem name="{@auto_disable_avb2=Disable vbmeta AVB2.0}">
+					<condition var1="fox_auto_disable_vbmeta_avb2" var2="1"/>
+					<!--condition var1="fox_patch_avb_20" op="!=" var2="1"/-->
+					<data variable="tw_auto_disable_avb2"/>
 				</listitem>
 				<listitem name="{@unmount_sys_install}">
 					<data variable="tw_unmount_system"/>
