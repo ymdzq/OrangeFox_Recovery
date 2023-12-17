@@ -70,6 +70,19 @@
 					<icon res="maintainer"/>
 					<action function="page">maintainer</action>
 				</listitem>
+				<listitem name="{@disable_avb2=Disable AVB2.0}">
+					<condition var1="fox_auto_disable_vbmeta_avb2" var2="1"/>
+					<icon res="bs_btn_archive"/>
+					<actions>
+						<action function="set">tw_back=advanced</action>
+						<action function="set">tw_action=disableAVB2</action>
+						<action function="set">tw_text1={@disable_avb2_confirm=Disable AVB2.0?}</action>
+						<action function="set">tw_action_text1={@disabling_AVB2=Disabling AVB2.0...}</action>
+						<action function="set">tw_complete_text1={@disabling_AVB2_complete=Disabled AVB2.0}</action>
+						<action function="set">tw_slider_text={@swipe_to_confirm=Swipe to Confirm}</action>
+						<action function="page">confirm_action</action>
+					</actions>
+				</listitem>
 				<listitem name="{@reboot_btn}">
 					<icon res="bs_adv_reboot"/>
 					<action function="set">tw_back=advanced</action>
