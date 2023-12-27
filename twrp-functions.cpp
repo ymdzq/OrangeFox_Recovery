@@ -1028,7 +1028,14 @@ int TWFunc::tw_reboot(RebootCommand command)
     	
   	TWFunc::Run_Before_Reboot();
   	// ----
-   
+
+	TWPartition *dataPart = PartitionManager.Find_Partition_By_Path("/data");
+	if (dataPart) {
+		if (dataPart->Is_Mounted()) {
+			dataPart->UnMount(false);
+		}
+	}
+
 	switch (command) {
 		case rb_current:
 		case rb_system:
