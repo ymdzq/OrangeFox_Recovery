@@ -318,7 +318,7 @@
 			<listbox>
 				<placement x="0" y="%row3_2a_y%" w="%screen_w%" h="%lb_l2%"/>
 				<data name="style_battery"/>
-				<listitem name="Pie">0</listitem>
+				<listitem name="{@cust_navbar_pie}">0</listitem>
 				<listitem name="{@status_battery_circle}">1</listitem>
 			</listbox>
 
@@ -583,7 +583,7 @@
 				<data name="nougat"/>
 				<listitem name="{@cust_navbar_cls}">0</listitem>
 				<listitem name="{@cust_navbar_noug}">1</listitem>
-				<listitem name="Pie">3</listitem>
+				<listitem name="{@cust_navbar_pie}">3</listitem>
 			</listbox>
 
 			<text style="caption">
@@ -802,7 +802,7 @@
 				<data name="nougat"/>
 				<listitem name="{@cust_navbar_cls}">0</listitem>
 				<listitem name="{@cust_navbar_noug}">1</listitem>
-				<listitem name="Pie">3</listitem>
+				<listitem name="{@cust_navbar_pie}">3</listitem>
 			</listbox>
 
 			<text style="caption">

@@ -605,6 +605,7 @@
 		<string name="dbg_overlay">Overlay</string>
 		<string name="fm_none">None</string>
 		
+		<string name="cust_navbar_pie">Pie</string>
 		<string name="cust_navbar_noug">Nougat</string>
 		<string name="cust_navbar_cls">Classic</string>
 		<string name="cust_navbar_accent">Accent</string>
