@@ -114,6 +114,10 @@ exit:
 	if (modules_loaded == 0)
 		DataManager::SetValue("of_request_switch_control_mode" , "1");
 
+#ifdef TW_XIAOMI_TOUCH_PERMISSION_FIX
+	TWFunc::Exec_Cmd("chmod 0664 /sys/class/touch/touch_dev/touch_thp* > /dev/null 2>&1", false);
+#endif
+
 	android::base::SetProperty(TW_MODULES_MOUNTED_PROP, "true");
 
 	return true;
