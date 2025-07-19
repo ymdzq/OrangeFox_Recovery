@@ -403,7 +403,7 @@ static bool Fox_CheckReload_Themes() {
   || TWFunc::Fox_Property_Get("orangefox.mount_to_decrypt") == "1") {
 	DataManager::SetValue(FOX_ENCRYPTED_DEVICE, "1");
     }
-#if defined(FOX_ALLOW_EARLY_SETTINGS_LOAD) && defined(FOX_SETTINGS_ROOT_DIRECTORY)
+#if defined(FOX_ALLOW_EARLY_SETTINGS_LOAD)
   return false;
 #else
   return (TWFunc::Path_Exists(FOX_THEME_PATH) || TWFunc::Path_Exists(FOX_NAVBAR_PATH));
@@ -638,7 +638,9 @@ int main(int argc, char **argv) {
 		DataManager::SetValue("of_reload_back", "main");
 		PageManager::RequestReload();
 		gui_startPage("reapply_settings", 1, 0);
-	} else gui_start();
+	} else {
+	}
+	gui_start();
 
 	delete adb_bu_fifo;
 	TWFunc::Update_Intent_File(startup.Get_Intent());
