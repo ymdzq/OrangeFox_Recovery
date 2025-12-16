@@ -376,6 +376,11 @@ ifeq ($(TW_INCLUDE_7ZA), true)
     TWRP_REQUIRED_MODULES += \
         7za
 endif
+ifeq ($(TW_INCLUDE_ZSTD), true)
+    LOCAL_CFLAGS += -DTW_INCLUDE_ZSTD
+    TWRP_REQUIRED_MODULES += \
+        zstd
+endif
 WITH_CRYPTO_UTILS := \
     $(if $(wildcard system/core/libcrypto_utils/android_pubkey.c),true)
 ifeq ($(TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID), true)
